@@ -1,6 +1,6 @@
 .portfolio-header {
   position: relative;
-  background-color: #FFF;
+  background-color: #e1e1e0;
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -162,16 +162,79 @@ img.article-image {
   margin: auto;
 }
 
-.center {
-  text-align: center;
-}
 
 body {
   font-family: 'Roboto';
+  background-color: #e1e1e0;
 }
 
 footer {
   background-size: cover;
   text-align: center;
+  font-size: 1em;
 }
 
+
+h3 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #10e168;
+  margin: 0px;
+}
+h4 {
+  font-size: 2em;
+  color: #10e168;
+}
+
+p {
+  font-size: 1.3em;
+  max-width: 500px;
+  margin: 0 auto;
+  letter-spacing: .1em;
+  line-height: 1.5em;
+}
+
+.banner {
+  text-align: center;
+  height: 100vh;
+  padding-top: 100px;
+  background: url(images/banner-background.png) no-repeat;
+  background-size: cover;
+  background-position-y: 15%;
+}
+
+.banner-text {
+  color: #088A08;
+}
+
+
+.mdl-grid{
+  padding: 0px !important;
+}
+
+.mdl-cell{
+  margin: 0px !important;
+}
+
+.article {
+  text-align: center;
+  padding-top: 100px;
+  background-color: #FFF;
+  width: 100vw;
+  padding-bottom: 100px;
+}
+
+.article-style {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.article1-image {
+  height: 300px;
+  width: auto;
+  display: inline-block;
+}
+.article1-text {
+  display: inline-block;
+  margin-left: 50px;
+}
