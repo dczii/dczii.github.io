@@ -187,7 +187,7 @@ h4 {
 }
 
 p {
-  font-size: 1.3em;
+  font-size: 1.5em;
   max-width: 500px;
   margin: 0 auto;
   letter-spacing: .1em;
@@ -197,14 +197,25 @@ p {
 .banner {
   text-align: center;
   height: 100vh;
-  padding-top: 100px;
+  padding-top: 50px;
   background: url(images/banner-background.png) no-repeat;
   background-size: cover;
   background-position-y: 15%;
 }
 
+.banner-work {
+  text-align: center;
+    height: 50vh;
+    padding-top: 150px;
+    background: url(images/banner-work.png) no-repeat;
+    background-size: cover;
+    width: 100vw;
+}
+
 .banner-text {
-  color: #088A08;
+  color: #5C6062;
+  margin: 0px;
+  font-weight: bold;
 }
 
 
@@ -225,8 +236,9 @@ p {
 }
 
 .article-style {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
 }
 
 .article1-image {
@@ -236,5 +248,90 @@ p {
 }
 .article1-text {
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 200px;
 }
+
+.article-message {
+  max-width: 800px;
+  line-height: 2em;
+  margin-bottom: 50px;
+}
+
+i.email {
+  background: url(images/envelope.png) no-repeat;
+  height: 30px;
+  width: 30px;
+  top: 15%;
+  background-size: cover;
+  position: absolute;
+  margin-left: 10px;
+}
+
+/*Work Page Style*/
+.work-banner-style {
+  height: 100px;
+  width: auto;
+}
+
+
+
+/*Button Style*/
+.btn {
+  color: #4ABDAC;
+  cursor: pointer;
+  display: block;
+  font-size: 2em;
+  font-family: "Roboto";
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 400px;
+  margin: 0 auto 2em;
+  position: relative;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+  text-decoration: none;
+}
+
+.btn-msg {
+  letter-spacing: 0;
+  transition: all 350ms ease-in-out;
+}
+
+.btn-msg:hover,
+.btn-msg:active {
+  letter-spacing: 5px;
+  transition: all 350ms ease-in-out;
+}
+
+.btn-msg:after,
+.btn-msg:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border: 1px solid rgba(255, 255, 255, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transition: all 280ms ease-in-out;
+          transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-msg:hover:after,
+.btn-msg:hover:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-color: #4ABDAC;
+  -webkit-transition: width 350ms ease-in-out;
+          transition: width 350ms ease-in-out;
+  width: 90%;
+}
+
+.btn-msg:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 90%;
+}
+
