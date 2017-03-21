@@ -16,21 +16,21 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
-<body>
+<body onload="onLoad()">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header background-style">
         <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-navigation-row">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="index.html">Hello</a>
+                    <a id="nav_hello" class="mdl-navigation__link is-active" href="#" onClick="toHelloPage()">Hello</a>
                      <span class="mdl-layout__title">
                     <div class="portfolio-logo"></div>
                 </span>
-                    <a class="mdl-navigation__link" href="Work.html">Work</a>
+                    <a id="nav_work" class="mdl-navigation__link" href="#" onClick="changePage()">Work</a>
                 </nav>
             </div>
         </header>
         <main class="mdl-layout__content">
-              <div class="mdl-grid">
+            <div class="mdl-grid" id="hello_area">
                 <div class="mdl-cell mdl-cell--12-col banner">
                     <img src="images/img-logo-white.png" height="150px" width="150px"><br />
                     <img src="images/name-banner.png">
@@ -75,6 +75,48 @@
                     </a> 
                 </div>
             </div>
+
+            <!-- Work Page -->
+            <div class="mdl-grid" id="work_area">
+                <div class="mdl-cell mdl-cell--12-col banner-work">
+                    <img class="work-banner-style" src="images/work-banner.png">
+                    <!-- Background is Designed by Graphiqastock / Freepik -->
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone article">
+                    <h2>Web designs</h2>
+                    <figure class="snip1584">
+                        <img src="images/img5.jpg"/>
+                      <figcaption>
+                        <h3>Two Hills Adult Learning Council</h3>
+                        <h5>Home Page</h5>
+                      </figcaption><a href="https://www.twohillsalc.com/"></a>
+                    </figure>
+                    <figure class="snip1584"><img src="images/img1.jpg"/>
+                      <figcaption>
+                        <h3>Lino Skin Essential Online Reservation System</h3>
+                        <h5>Home Page</h5>
+                      </figcaption><a href="#"></a>
+                    </figure>
+                    <figure class="snip1584"><img src="images/img2.jpg"/>
+                      <figcaption>
+                        <h3>San Beda College - Student Organization Circle</h3>
+                        <h5>Home Page</h5>
+                      </figcaption><a href="#"></a>
+                    </figure>
+                    <figure class="snip1584"><img src="images/img3.jpg"/>
+                      <figcaption>
+                        <h3>Bedan Computer Information Society</h3>
+                        <h5>Home Page</h5>
+                      </figcaption><a href="#"></a>
+                    </figure>
+                    <figure class="snip1584"><img src="images/img4.jpg"/>
+                      <figcaption>
+                        <h3>Bedan Computer Information Society</h3>
+                        <h5>Home Page</h5>
+                      </figcaption><a href="#"></a>
+                    </figure>
+                </div>
+            </div>
             <footer >
                 <div>
                     <h5>© 2014 By DcZII. All rights reserved.</h5>
@@ -86,3 +128,40 @@
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function() {
+       $('#hello_area').show(); //Show first div on page load
+       $('#work_area').hide(); //Hide second div on page load
+       $('#nav_work').click(function(){ 
+       $ ('#hello_area').hide(); //Hide first div on click event
+       $ ('#work_area').show(); //Show second div on click event
+       return false;
+        }); 
+  });
+function onLoad() {
+    document.getElementById('hello_area').style.display="block";
+    document.getElementById('work_area').style.display="none";
+}
+
+
+// Change Body to work
+function changePage() {
+    document.getElementById('hello_area').style.display="none";
+    document.getElementById('work_area').style.display="block";
+
+    // Add class to nav
+    document.getElementById('nav_hello').classList.remove('is-active');
+    document.getElementById('nav_work').classList.add('is-active');
+}
+
+// Change body to hello
+function toHelloPage() {
+    document.getElementById('hello_area').style.display="block";
+    document.getElementById('work_area').style.display="none";
+
+    // Add class to nav
+    document.getElementById('nav_hello').classList.add('is-active');
+    document.getElementById('nav_work').classList.remove('is-active');
+}
+</script>
