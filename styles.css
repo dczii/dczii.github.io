@@ -450,3 +450,23 @@ i.email {
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
+
+/* Stars Style */
+
+.mdl-slider__container {
+  display: inline-block;
+  width: 30%;
+  vertical-align: 80%;
+}
+.mdl-slider__background-flex{
+  height: 30px;
+}
+.mdl-slider__background-lower {
+  background: #4ABDAC;
+}
+.mdl-slider__background-upper {
+  background: #dddfe2;
+}
+.mdl-slider {
+  display: none;
+}
