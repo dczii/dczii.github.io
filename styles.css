@@ -470,3 +470,14 @@ i.email {
 .mdl-slider {
   display: none;
 }
+
+/* Particle JS Style*/
+#particles-js{
+  width: 100%;
+  height: 100%;
+  background-color: #e1e1e0;
+  background-image: url('');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
