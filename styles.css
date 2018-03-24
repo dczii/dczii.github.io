@@ -1,3 +1,11 @@
+@media screen and (max-width: 768px) {
+  #hello_area {
+    padding-left: 10px;
+    padding-right: 10px;
+  }  
+}
+
+
 .portfolio-header {
   position: relative;
   background-color: #e1e1e0;
@@ -204,7 +212,6 @@ p {
 }
 @media screen and (max-width: 768px) {
   .banner {
-    background-size: contain !important;
     height: 60vh !important;
   }  
 }
@@ -255,7 +262,14 @@ p {
 }
 .article1-text {
   display: inline-block;
-  margin-left: 200px;
+
+  @media (min-width: 600px) {
+    margin-left: 200px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+  }
 }
 
 .article-message {
@@ -300,6 +314,16 @@ i.email {
   text-decoration: none;
 }
 
+.btn-logos {
+  color: #757575;
+  display: inline-block;
+  margin-bottom: 0px;
+  max-width: 50px;
+}
+
+.btn-logos:hover {
+  color: #424242;
+}
 .btn-msg {
   letter-spacing: 0;
   transition: all 350ms ease-in-out;
