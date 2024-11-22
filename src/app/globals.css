@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+Black #0b0909
+Ebony #44444c
+Gray #8c8c8c
+Pewter #d6d6d6 */
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b0909;
+  --accent: #44444c;
+  --gray: #8c8c8c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0909;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
+}
+
+.svg-container {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, var(--background) 1px);
+  background-size: 8px 8px;
+  background-repeat: repeat;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  -moz-backdrop-filter: blur(1px);
+  background-position: 0% 50%; /* Start position for animation */
+}
+
+.radial-background {
+  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, var(--background) 1px);
+  background-size: 8px 8px;
+  background-repeat: repeat;
+  backdrop-filter: blur(1px);
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #170b3b;
+  transform-origin: 0%;
+}
+
+.progress {
+  position: sticky;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.progress svg {
+  transform: translateX(-100px) rotate(-90deg);
+}
+
+circle {
+  stroke-dashoffset: 0;
+  stroke-width: 5%;
+  fill: none;
+}
+
+.bg {
+  stroke: var(--accent);
+  opacity: 0.2;
+}
+
+.progress .indicator {
+  stroke: var(--accent);
+}
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 5px;
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--background);
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+h2 {
+  margin: 0;
+  color: var(--accent);
+  left: calc(50% + 130px);
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1.2;
+  position: absolute;
+}
+
+section.item {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  scroll-snap-align: center;
+  perspective: 500px;
+}
+
+section.item > div {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  max-height: 90vh;
+  margin: 20px;
+  background: --gray;
+  overflow: hidden;
+}
+
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--accent);
+  bottom: 100px;
+  width: 100vw;
+}
