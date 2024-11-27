@@ -28,7 +28,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   cursor: none;
-  font-family: var(--font-inter, sans-serif);
+  font-family: "Inter", sans-serif;
 }
 
 h3 {
