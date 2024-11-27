@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { CursorTrail } from "@z/components";
+import { CursorTrail, TwinklingStars } from "@z/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,6 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body className='antialiased' style={{ fontFamily: "'Inter', sans-serif" }}>
+        <TwinklingStars />
         {children}
         <CursorTrail />
       </body>

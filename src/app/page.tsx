@@ -1,4 +1,5 @@
 "use client";
+import classNames from "classnames";
 import Image from "next/image";
 import { useScroll, useSpring, motion } from "motion/react";
 import { AnimatedMaskLogo, WorkList } from "@z/components";
@@ -17,7 +18,7 @@ export default function Home() {
     damping: 30,
     restDelta: 0.001,
   });
-  const introduction = `Danilo Zabala II is a dedicated front-end developer residing in Quezon City, Philippines. My expertise lies in designing and developing intuitive user interfaces for a variety of applications. From complex crypto trading platforms and secure digital wallets to corporate portfolios, convention sales systems, ticketing solutions, and library management platforms, I've consistently delivered high-quality, visually appealing, and highly functional web experiences.`;
+  const introduction = `Hi! I'm Danilo Zabala II a dedicated front-end developer residing in Quezon City, Philippines. My expertise lies in designing and developing intuitive user interfaces for a variety of applications. From complex crypto trading platforms and secure digital wallets to corporate portfolios, convention sales systems, ticketing solutions, and library management platforms, I've consistently delivered high-quality, visually appealing, and highly functional web experiences.`;
 
   const container = {
     hidden: { opacity: 1 },
@@ -37,24 +38,59 @@ export default function Home() {
   return (
     <div className='items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 flex flex-col max-w-[1440px] mx-auto'>
       <main className='flex flex-col items-center w-screen'>
-        <div className='sticky top-0 radial-background z-10 w-full py-10'>
+        <div className='sticky top-0 z-10 w-full py-10'>
           <AnimatedMaskLogo />
         </div>
 
         <div className='welcome-container '>
-          <motion.div
-            className='text-xl font-medium text-[#d6d6d6]'
-            variants={container}
-            initial='hidden'
-            animate='visible'
-          >
-            {introduction.split(" ").map((word, index) => (
-              <motion.span key={index} className='inline-block mr-1' variants={wordAnimation}>
-                {word}
-              </motion.span>
-            ))}
-          </motion.div>
-          <div className='absolute bottom-[20vh]'>
+          <div className='grid grid-cols-2 items-center'>
+            <motion.div
+              className='text-xl font-medium text-[#d6d6d6] col-span-2 md:col-span-1'
+              variants={container}
+              initial='hidden'
+              animate='visible'
+            >
+              {introduction.split(" ").map((word, index) => (
+                <motion.span
+                  key={index}
+                  className={classNames("inline-block mr-1", {
+                    "font-bold": index <= 5,
+                    "font-light": index > 5,
+                  })}
+                  variants={wordAnimation}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            <div className='col-span-2 md:col-span-1 flex justify-end'>
+              <motion.div
+                animate={{
+                  opacity: 1,
+                  y: [0, -50, 0], // Bounce effect after fade-in
+                }}
+                variants={{
+                  hidden: { opacity: 0, y: 50 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{
+                  opacity: {
+                    duration: 2, // Duration for fade-in
+                    delay: 3, // Delay fade-in by 5 seconds
+                  },
+                  y: {
+                    duration: 3, // Bounce duration
+                    repeat: Infinity, // Repeat bouncing
+                    ease: "easeInOut", // Smooth bounce
+                  },
+                }}
+              >
+                <Image src='/astronaut.png' alt='logo' className='z-10' height={600} width={600} />
+              </motion.div>
+            </div>
+          </div>
+          <div className='absolute bottom-[15vh]'>
             <motion.div
               className='h-[26px] w-[19px]'
               animate={{

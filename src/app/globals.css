@@ -40,7 +40,7 @@ h3 {
 .svg-container {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, var(--background) 1px);
+  background-image: radial-gradient(black 2px, transparent 1px);
   background-size: 8px 8px;
   background-repeat: repeat;
   backdrop-filter: blur(1px);
@@ -50,7 +50,7 @@ h3 {
 }
 
 .radial-background {
-  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, var(--background) 1px);
+  background-image: none;
   background-size: 8px 8px;
   background-repeat: repeat;
   backdrop-filter: blur(1px);
@@ -152,7 +152,7 @@ section.item > div {
 
 .welcome-container {
   height: 100vh;
-  max-width: 600px;
+  max-width: 1920px;
   height: 100vh;
   display: flex;
   flex-direction: column;
