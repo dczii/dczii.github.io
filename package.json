@@ -15,6 +15,7 @@
     "@shadergradient/react": "^2.0.8",
     "classnames": "^2.5.1",
     "html-react-parser": "^5.1.18",
+    "locomotive-scroll": "^4.1.4",
     "motion": "^11.11.17",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@tweakpane/core": "^2.0.5",
+    "@types/locomotive-scroll": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
