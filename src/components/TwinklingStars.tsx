@@ -5,7 +5,7 @@ const TwinklingStars = () => {
   const stars = Array(100).fill(null); // Create 100 stars
 
   return (
-    <div className='fixed top-0 left-0 w-full h-full bg-black'>
+    <div className='fixed top-0 left-0 w-full h-full bg-black -z-[1]'>
       <div className='relative w-full h-full'>
         {stars.map((_, index) => {
           const x = Math.random() * 100; // Random x position

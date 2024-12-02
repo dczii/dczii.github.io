@@ -1,8 +1,10 @@
 "use client";
 import classNames from "classnames";
+import Link from "next/link";
 import Image from "next/image";
 import { useScroll, useSpring, motion } from "motion/react";
-import { AnimatedMaskLogo, WorkList } from "@z/components";
+
+import { AnimatedMaskLogo, Footer, WorkList } from "@z/components";
 
 export type WorkDataType = {
   year: string;
@@ -62,6 +64,7 @@ export default function Home() {
                   {word}
                 </motion.span>
               ))}
+              <Link href='/3d'>3D Page</Link>
             </motion.div>
 
             <div className='col-span-2 md:col-span-1 flex justify-end'>
@@ -143,15 +146,7 @@ export default function Home() {
         ))}
       </main>
 
-      <footer className='row-start-3 gap-6 flex flex-wrap items-center justify-center sticky bottom-0 radial-background w-screen h-20'>
-        <motion.div className='progress' style={{ scaleX }} />
-        <Image aria-hidden src='/react.svg' alt='react' width={50} height={50} />
-        <Image aria-hidden src='/graphql.svg' alt='graphql' width={50} height={50} />
-        <Image aria-hidden src='/nextjs.svg' alt='nextjs' width={50} height={50} />
-        <Image aria-hidden src='/nodejs.svg' alt='nodejs' width={50} height={50} />
-        <Image aria-hidden src='/tailwind.svg' alt='tailwind' width={50} height={50} />
-        <Image aria-hidden src='/typescript.svg' alt='typescript' width={50} height={50} />
-      </footer>
+      <Footer scaleX={scaleX} />
     </div>
   );
 }

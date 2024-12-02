@@ -10,17 +10,25 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@react-three/drei": "^9.56.5",
+    "@react-three/fiber": "^9.0.0-alpha.8",
+    "@shadergradient/react": "^2.0.8",
     "classnames": "^2.5.1",
     "html-react-parser": "^5.1.18",
     "motion": "^11.11.17",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "three": "^0.169.0",
+    "three-stdlib": "^2.30.1",
+    "tweakpane": "^4.0.5"
   },
   "devDependencies": {
+    "@tweakpane/core": "^2.0.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.170.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
