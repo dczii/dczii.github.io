@@ -50,7 +50,7 @@ export default function Home() {
           </div>
 
           <div className='welcome-container '>
-            <div className='grid grid-cols-2 items-center'>
+            <div className='grid grid-cols-2 items-center px-5 md:px-10'>
               <motion.div
                 className='text-xl font-medium text-[#d6d6d6] col-span-2 md:col-span-1'
                 variants={container}
@@ -69,10 +69,10 @@ export default function Home() {
                     {word}
                   </motion.span>
                 ))}
-                <Link href='/3d'>3D Page</Link>
+                {/* <Link href='/3d'>3D Page</Link> */}
               </motion.div>
 
-              <div className='col-span-2 md:col-span-1 flex justify-end'>
+              <div className='col-span-2 md:col-span-1 flex justify-center md:justify-end mt-14 md:mt-0'>
                 <motion.div
                   animate={{
                     opacity: 1,
@@ -97,7 +97,7 @@ export default function Home() {
                   <Image
                     src='/astronaut.png'
                     alt='logo'
-                    className='z-10'
+                    className='z-10 h-[400px] w-[400px] md:h-[600px] md:w-[600px]'
                     height={600}
                     width={600}
                   />
