@@ -1,6 +1,5 @@
 "use client";
 import classNames from "classnames";
-import Link from "next/link";
 import Image from "next/image";
 import { useScroll, useSpring, motion } from "motion/react";
 import { AnimatePresence } from "motion/react";
