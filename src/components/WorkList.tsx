@@ -8,7 +8,7 @@ const WorkList = ({ year, company, title, jobDescription }: WorkDataType) => {
   const ref = useRef(null);
 
   return (
-    <section className='item w-[90vw] md:[80vw] lg:w-[40vw]'>
+    <section className='item w-[90vw] md:w-[80vw] lg:w-[40vw]'>
       <motion.div
         ref={ref}
         initial='hidden'
