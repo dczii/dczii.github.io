@@ -1,34 +1,23 @@
-"use client";
-import { useRef } from "react";
-import { motion } from "framer-motion";
 import parse from "html-react-parser";
-import { WorkDataType } from "@z/app/page";
+
+import type { WorkDataType } from "@z/data/work";
 
 const WorkList = ({ year, company, title, jobDescription }: WorkDataType) => {
-  const ref = useRef(null);
-
   return (
-    <section className='item w-[90vw] md:w-[80vw] lg:w-[40vw]'>
-      <motion.div
-        ref={ref}
-        initial='hidden'
-        whileInView='visible'
-        exit='hidden'
-        viewport={{ once: false, amount: 0.5 }} // Re-trigger animation when it enters/exits view
-        transition={{ duration: 0.8, ease: "linear" }}
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0 },
-        }}
-      >
-        <div className='text-[#d6d6d6]'>
-          <h2>{year}</h2>
-          <h3>{title}</h3>
-          <div className='text-xl'>{company}</div>
-          <ul>{parse(jobDescription)}</ul>
-        </div>
-      </motion.div>
-    </section>
+    <li className='relative pl-8'>
+      <span
+        className='absolute left-0 top-6 h-3 w-3 -translate-x-1/2 rounded-full border border-[#d6d6d6] bg-[#07080d]'
+        aria-hidden='true'
+      />
+      <article className='rounded-2xl border border-[#d6d6d6]/15 bg-[#0b0909]/85 p-5 sm:p-6'>
+        <h3 className='text-xl font-semibold text-[#d6d6d6]'>{title}</h3>
+        <p className='mt-1 text-base text-[#d6d6d6]'>{company}</p>
+        <p className='mt-1 text-sm text-[#c8c8c8]'>{year}</p>
+        <ul className='mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#d6d6d6] sm:text-base'>
+          {parse(jobDescription)}
+        </ul>
+      </article>
+    </li>
   );
 };
 

@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import localFont from "next/font/local";
 
-import { CursorTrail, TwinklingStars } from "@z/components";
+import "./globals.css";
 import { siteDescription, siteTitle, siteUrl } from "./site";
+
+const geist = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist",
+  weight: "100 900",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,18 +44,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <head>
-        {/* Link to Google Fonts */}
-        <link
-          href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
-          rel='stylesheet'
-        />
-      </head>
-      <body className='antialiased' style={{ fontFamily: "'Inter', sans-serif" }}>
-        <TwinklingStars />
+    <html lang='en' className={geist.variable}>
+      <body className={`${geist.className} antialiased`}>
+        <a href='#main' className='skip-link'>
+          Skip to content
+        </a>
         {children}
-        <CursorTrail />
       </body>
     </html>
   );

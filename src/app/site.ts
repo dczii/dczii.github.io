@@ -1,5 +1,7 @@
 export const siteUrl = "https://dczii.github.io";
 
+export const githubUrl = "https://github.com/dczii";
+
 export const siteTitle = "Danilo Zabala II | Senior Frontend Engineer";
 
 export const siteDescription =

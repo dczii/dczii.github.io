@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-geist)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["var(--font-roboto-mono)"],
       },
       colors: {
