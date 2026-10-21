@@ -1,30 +1,6 @@
-type Star = { id: number; x: number; y: number; r: number; o: number };
-
-function createStars(): Star[] {
-  let seed = 42;
-  const rand = () => {
-    seed = (seed * 16807) % 2147483647;
-    return (seed - 1) / 2147483646;
-  };
-  return Array.from({ length: 64 }, (_, id) => ({
-    id,
-    x: rand() * 1600,
-    y: rand() * 900,
-    r: rand() > 0.88 ? 1.7 : 0.9,
-    o: 0.28 + rand() * 0.6,
-  }));
-}
-
-const STARS = createStars();
-
 export default function SpaceFallback({ hidden }: { hidden: boolean }) {
   return (
     <div className={hidden ? "space-fallback is-out" : "space-fallback"} aria-hidden='true'>
-      <svg className='fallback-stars' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'>
-        {STARS.map((star) => (
-          <circle key={star.id} cx={star.x} cy={star.y} r={star.r} fill='#e7eef8' opacity={star.o} />
-        ))}
-      </svg>
       <svg className='fallback-planet' viewBox='0 0 200 200'>
         <defs>
           <radialGradient id='mc-planet-body' cx='36%' cy='32%' r='68%'>
