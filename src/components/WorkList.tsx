@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
-import { WorkDataType } from "@z/app/page";
+import type { WorkDataType } from "@z/content/profile";
 
 const WorkList = ({ year, company, title, jobDescription }: WorkDataType) => {
   const ref = useRef(null);
