@@ -33,7 +33,7 @@ class CanvasBoundary extends Component<BoundaryProps, BoundaryState> {
   }
 }
 
-export default function SpaceCanvas() {
+export default function SpaceCanvas({ onLive }: { onLive?: () => void }) {
   const scroll = useRef<ScrollState>(createScrollState());
   const [hidden, setHidden] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -42,6 +42,10 @@ export default function SpaceCanvas() {
   const [failed, setFailed] = useState(false);
   const onReady = useCallback(() => setVisible(true), []);
   const onError = useCallback(() => setFailed(true), []);
+
+  useEffect(() => {
+    if (visible) onLive?.();
+  }, [onLive, visible]);
 
   useEffect(() => {
     const state = scroll.current;

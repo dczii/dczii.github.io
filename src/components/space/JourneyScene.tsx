@@ -25,8 +25,8 @@ const DESKTOP_PATH: Array<[Vec3, Vec3]> = [
 ];
 
 const MOBILE_PATH: Array<[Vec3, Vec3]> = [
-  [[0, 0.2, 6.4], [0, 1.25, 0]],
-  [[-0.4, 0.7, 3.4], [0.2, 1.05, -2]],
+  [[0, 0.05, 5.4], [0, -0.15, 0]],
+  [[-0.2, 0.45, 3.2], [0.15, 0.7, -2]],
   [[0, 0.45, -3.2], [0, 0.35, -16]],
   [[0, 0.85, -22], [0, 0.3, -46]],
   [[0, 1.15, -36], [0, 0.2, -52]],
@@ -101,6 +101,7 @@ function JourneyCamera({ scroll, compact }: { scroll: { current: ScrollState }; 
 }
 
 function Starfield({ count, seed, size }: { count: number; seed: number; size: number }) {
+  const points = useRef<THREE.Points>(null);
   const geometry = useMemo(() => {
     const rand = mulberry32(seed);
     const positions = new Float32Array(count * 3);
@@ -108,7 +109,7 @@ function Starfield({ count, seed, size }: { count: number; seed: number; size: n
     const palette = ["#ffffff", "#d6d6d6", "#b4e6ff", "#8c8c8c"].map((hex) => new THREE.Color(hex));
 
     for (let i = 0; i < count; i += 1) {
-      const radius = 3.5 + rand() * 26;
+      const radius = 8 + rand() * 28;
       const theta = rand() * Math.PI * 2;
       positions[i * 3] = Math.cos(theta) * radius;
       positions[i * 3 + 1] = (rand() - 0.5) * radius * 0.72;
@@ -127,13 +128,17 @@ function Starfield({ count, seed, size }: { count: number; seed: number; size: n
 
   useEffect(() => () => geometry.dispose(), [geometry]);
 
+  useFrame((_, delta) => {
+    if (points.current) points.current.rotation.y += delta * 0.008;
+  });
+
   return (
-    <points geometry={geometry}>
+    <points ref={points} geometry={geometry}>
       <PointMaterial
         vertexColors
         transparent
         size={size}
-        sizeAttenuation
+        sizeAttenuation={false}
         depthWrite={false}
         opacity={0.95}
       />
@@ -181,13 +186,19 @@ function Galaxy({ count, compact }: { count: number; compact: boolean }) {
   return (
     <group ref={group} position={[0, -0.4, -51]} rotation={[0.62, 0.15, 0.05]}>
       <points geometry={geometry}>
-        <PointMaterial vertexColors transparent size={compact ? 1.15 : 1.45} sizeAttenuation depthWrite={false} />
+        <PointMaterial
+          vertexColors
+          transparent
+          size={compact ? 0.045 : 0.07}
+          sizeAttenuation
+          depthWrite={false}
+        />
       </points>
     </group>
   );
 }
 
-function useGlow(color: string) {
+function useGlow(inner: string, mid: string) {
   return useMemo(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 128;
@@ -195,19 +206,20 @@ function useGlow(color: string) {
     const context = canvas.getContext("2d");
     if (!context) return null;
     const gradient = context.createRadialGradient(64, 64, 0, 64, 64, 64);
-    gradient.addColorStop(0, color);
+    gradient.addColorStop(0, inner);
+    gradient.addColorStop(0.42, mid);
     gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
     context.fillStyle = gradient;
     context.fillRect(0, 0, 128, 128);
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
     return texture;
-  }, [color]);
+  }, [inner, mid]);
 }
 
 function Nebula({ compact }: { compact: boolean }) {
-  const blue = useGlow("rgba(180, 230, 255, 0.55)");
-  const mist = useGlow("rgba(214, 214, 214, 0.28)");
+  const blue = useGlow("rgba(180, 230, 255, 0.22)", "rgba(180, 230, 255, 0.05)");
+  const mist = useGlow("rgba(214, 214, 214, 0.16)", "rgba(180, 230, 255, 0.04)");
 
   useEffect(
     () => () => {
@@ -221,17 +233,12 @@ function Nebula({ compact }: { compact: boolean }) {
 
   return (
     <>
-      <sprite position={compact ? [0.2, 1.4, -8] : [4.2, 0.8, -10]} scale={compact ? [7, 7, 1] : [10, 10, 1]}>
-        <spriteMaterial map={blue} transparent depthWrite={false} blending={THREE.AdditiveBlending} />
+      <sprite position={compact ? [0.4, 1.5, -6] : [2.4, 0.4, -4]} scale={compact ? [9, 9, 1] : [14, 14, 1]}>
+        <spriteMaterial map={blue} transparent depthWrite={false} blending={THREE.AdditiveBlending} opacity={0.7} />
       </sprite>
-      <sprite position={[0, 0.2, -51]} scale={compact ? [16, 10, 1] : [22, 14, 1]}>
-        <spriteMaterial map={mist} transparent depthWrite={false} blending={THREE.AdditiveBlending} />
+      <sprite position={[0, 0.1, -51]} scale={compact ? [18, 11, 1] : [26, 16, 1]}>
+        <spriteMaterial map={mist} transparent depthWrite={false} blending={THREE.AdditiveBlending} opacity={0.85} />
       </sprite>
-      {compact ? null : (
-        <sprite position={[-5, -1.2, -28]} scale={[12, 8, 1]}>
-          <spriteMaterial map={blue} transparent depthWrite={false} blending={THREE.AdditiveBlending} opacity={0.7} />
-        </sprite>
-      )}
     </>
   );
 }
@@ -290,8 +297,8 @@ function Astronaut({ compact, onReady }: { compact: boolean; onReady: () => void
     };
   }, [compact, onReady]);
 
-  const position: Vec3 = compact ? [0, 1.42, 0] : [1.62, 0.02, 0];
-  const scale = compact ? 2.15 : 2.7;
+  const position: Vec3 = compact ? [0, 1.28, 0] : [1.62, 0.02, 0];
+  const scale = compact ? 2.45 : 2.7;
 
   return (
     <Float speed={1.2} rotationIntensity={0.35} floatIntensity={0.85} floatingRange={[-0.12, 0.12]} position={position}>
@@ -318,7 +325,8 @@ export default function JourneyScene({
       <AdaptiveDpr />
       <JourneyCamera scroll={scroll} compact={compact} />
       <Nebula compact={compact} />
-      <Starfield count={compact ? 420 : 1400} seed={7} size={compact ? 1.5 : 2.1} />
+      <Starfield count={compact ? 520 : 1600} seed={7} size={compact ? 1.15 : 1.45} />
+      <Starfield count={compact ? 40 : 90} seed={21} size={compact ? 2.1 : 2.4} />
       <Galaxy count={compact ? 700 : 1900} compact={compact} />
       <PortalRings />
       <Astronaut compact={compact} onReady={onReady} />
