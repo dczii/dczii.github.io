@@ -1,4 +1,4 @@
-import { githubUrl } from "@z/content/profile";
+import { emailAddress, githubUrl, linkedInUrl } from "@z/content/profile";
 
 function GitHubIcon() {
   return (
@@ -21,14 +21,10 @@ export default function SocialLinks() {
         </a>
       </li>
       <li>
-        <span className='slot' data-slot='linkedin'>
-          LinkedIn <span className='todo'>TODO</span>
-        </span>
+        <a href={linkedInUrl}>LinkedIn</a>
       </li>
       <li>
-        <span className='slot' data-slot='email'>
-          Email <span className='todo'>TODO</span>
-        </span>
+        <a href={`mailto:${emailAddress}`}>{emailAddress}</a>
       </li>
       <li>
         <button type='button' disabled data-slot='resume'>

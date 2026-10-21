@@ -244,7 +244,6 @@
 }
 
 .social a,
-.social .slot,
 .social button {
   display: inline-flex;
   align-items: center;
@@ -272,7 +271,6 @@
   background: rgba(159, 212, 255, 0.1);
 }
 
-.social .slot,
 .social button {
   border-style: dashed;
 }

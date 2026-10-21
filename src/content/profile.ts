@@ -3,6 +3,8 @@ import { siteDescription, siteTitle } from "@z/app/site";
 export const siteName = "Danilo Zabala II";
 export const siteRole = "Senior Frontend Engineer";
 export const githubUrl = "https://github.com/dczii";
+export const linkedInUrl = "https://www.linkedin.com/in/dczii";
+export const emailAddress = "dczii@live.com";
 
 export const sitePitch =
   "My expertise lies in designing and developing intuitive user interfaces for a variety of applications.";
