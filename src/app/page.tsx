@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useScroll, useSpring, motion } from "motion/react";
 import { AnimatePresence } from "motion/react";
 
-import { AnimatedMaskLogo, Footer, Preloader, WorkList } from "@z/components";
+import { AnimatedMaskLogo, Footer, Preloader, ProjectList, WorkList } from "@z/components";
+import { siteDescription } from "./site";
 
 export type WorkDataType = {
   year: string;
@@ -20,7 +21,7 @@ export default function Home() {
     damping: 30,
     restDelta: 0.001,
   });
-  const introduction = `Hi! I'm Danilo Zabala II a dedicated front-end developer residing in Quezon City, Philippines. My expertise lies in designing and developing intuitive user interfaces for a variety of applications. From complex crypto trading platforms and secure digital wallets to corporate portfolios, convention sales systems, ticketing solutions, and library management platforms, I've consistently delivered high-quality, visually appealing, and highly functional web experiences.`;
+  const introduction = siteDescription;
 
   const container = {
     hidden: { opacity: 1 },
@@ -50,7 +51,7 @@ export default function Home() {
 
           <div className='welcome-container '>
             <div className='grid grid-cols-2 items-center px-5 md:px-10'>
-              <motion.div
+              <motion.h1
                 className='text-xl font-medium text-[#d6d6d6] col-span-2 md:col-span-1'
                 variants={container}
                 initial='hidden'
@@ -69,7 +70,7 @@ export default function Home() {
                   </motion.span>
                 ))}
                 {/* <Link href='/3d'>3D Page</Link> */}
-              </motion.div>
+              </motion.h1>
 
               <div className='col-span-2 md:col-span-1 flex justify-center md:justify-end mt-14 md:mt-0'>
                 <motion.div
@@ -94,7 +95,7 @@ export default function Home() {
                   }}
                 >
                   <Image
-                    src='/astronaut.png'
+                    src='/astronaut.webp'
                     alt='logo'
                     className='z-10 h-[400px] w-[400px] md:h-[600px] md:w-[600px]'
                     height={600}
@@ -154,6 +155,7 @@ export default function Home() {
           {WORK_DATA.map((data) => (
             <WorkList key={data.year} {...data} />
           ))}
+          <ProjectList />
         </main>
 
         <Footer scaleX={scaleX} />
