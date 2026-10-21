@@ -78,7 +78,7 @@ h3 {
   transform: translateX(-100px) rotate(-90deg);
 }
 
-circle {
+.progress circle {
   stroke-dashoffset: 0;
   stroke-width: 5%;
   fill: none;

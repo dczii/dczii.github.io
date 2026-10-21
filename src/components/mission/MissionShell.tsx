@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
+import Sky from "./Sky";
 import SpaceFallback from "./SpaceFallback";
 import SpaceGate from "./SpaceGate";
 
@@ -77,6 +78,7 @@ export default function MissionShell({
   return (
     <MissionContext.Provider value={value}>
       <div className='mission' id='mission'>
+        <Sky />
         <SpaceFallback hidden={sceneLive} />
         {children}
         <SpaceGate onLive={handleLive} />

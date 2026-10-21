@@ -68,29 +68,6 @@ void main() {
 }
 `;
 
-const starVert = `
-attribute float aSize;
-varying float vAlpha;
-void main() {
-  vAlpha = clamp(aSize / 2.2, 0.45, 1.0);
-  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-  gl_PointSize = aSize * (210.0 / max(1.0, -mvPosition.z));
-  gl_Position = projectionMatrix * mvPosition;
-}
-`;
-
-const starFrag = `
-varying float vAlpha;
-void main() {
-  vec2 point = gl_PointCoord - vec2(0.5);
-  float dist = dot(point, point);
-  if (dist > 0.25) discard;
-  float alpha = smoothstep(0.25, 0.02, dist) * vAlpha;
-  vec3 color = vec3(0.93, 0.96, 1.0);
-  gl_FragColor = vec4(color * alpha, alpha);
-}
-`;
-
 function Planet() {
   const tilt = useRef<THREE.Group>(null);
   const spin = useRef<THREE.Group>(null);
@@ -160,12 +137,12 @@ function Planet() {
     if (uniform instanceof THREE.Color) uniform.copy(color);
 
     const mobile = state.size.width < 760;
-    const x = mobile ? state.viewport.width * 0.3 : -state.viewport.width * 0.37;
-    const y = mobile ? state.viewport.height * 0.39 : -state.viewport.height * 0.24;
+    const x = mobile ? state.viewport.width * 0.5 : -state.viewport.width * 0.5;
+    const y = mobile ? state.viewport.height * 0.43 : -state.viewport.height * 0.44;
     const group = tilt.current;
     if (group) {
       group.position.set(x, y, 0);
-      group.scale.setScalar(mobile ? 0.32 : 0.48);
+      group.scale.setScalar(mobile ? 0.12 : 0.3);
       group.rotation.x = THREE.MathUtils.damp(group.rotation.x, pointer.y * -0.18, 2.4, delta);
       group.rotation.z = THREE.MathUtils.damp(group.rotation.z, pointer.x * 0.12, 2.4, delta);
     }
@@ -186,48 +163,14 @@ function Planet() {
   );
 }
 
-function Starfield({ count }: { count: number }) {
-  const geometry = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const sizes = new Float32Array(count);
-    let seed = 1337;
-    const rand = () => {
-      seed = (seed * 16807) % 2147483647;
-      return (seed - 1) / 2147483646;
-    };
-    for (let index = 0; index < count; index += 1) {
-      positions[index * 3] = (rand() - 0.5) * 26;
-      positions[index * 3 + 1] = (rand() - 0.5) * 16;
-      positions[index * 3 + 2] = -1.2 - rand() * 16;
-      sizes[index] = 0.65 + rand() * 1.9;
-    }
-    const geom = new THREE.BufferGeometry();
-    geom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geom.setAttribute("aSize", new THREE.BufferAttribute(sizes, 1));
-    geom.computeBoundingSphere();
-    return geom;
-  }, [count]);
-
-  const material = useMemo(
-    () =>
-      new THREE.ShaderMaterial({
-        vertexShader: starVert,
-        fragmentShader: starFrag,
-        transparent: true,
-        depthWrite: false,
-        premultipliedAlpha: true,
-      }),
-    [],
-  );
-
-  useEffect(() => {
-    return () => {
-      geometry.dispose();
-      material.dispose();
-    };
-  }, [geometry, material]);
-
-  return <points geometry={geometry} material={material} frustumCulled={false} />;
+function FirstFrame({ onLive }: { onLive: () => void }) {
+  const called = useRef(false);
+  useFrame(() => {
+    if (called.current) return;
+    called.current = true;
+    onLive();
+  });
+  return null;
 }
 
 function readQuality() {
@@ -235,7 +178,6 @@ function readQuality() {
   const cap = narrow ? 1.15 : 1.5;
   return {
     dpr: Math.min(window.devicePixelRatio || 1, cap),
-    stars: narrow ? 150 : 420,
     narrow,
   };
 }
@@ -247,12 +189,8 @@ export default function SpaceCanvas({ onLive }: { onLive: () => void }) {
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setVisible(true));
-    const done = window.setTimeout(onLive, 760);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(done);
-    };
-  }, [onLive]);
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     const root = document.getElementById("mission");
@@ -298,7 +236,7 @@ export default function SpaceCanvas({ onLive }: { onLive: () => void }) {
         }}
       >
         <AdaptiveDpr />
-        <Starfield count={quality.stars} />
+        <FirstFrame onLive={onLive} />
         <Planet />
       </Canvas>
     </div>
