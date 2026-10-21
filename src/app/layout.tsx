@@ -1,8 +1,31 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 
-import { CursorTrail, TwinklingStars } from "@z/components";
+import LegacyChrome from "@z/components/mission/LegacyChrome";
 import { siteDescription, siteTitle, siteUrl } from "./site";
+
+import "./globals.css";
+import "./mission.css";
+
+const sans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-sans",
+  display: "swap",
+  adjustFontFallback: "Arial",
+  weight: "100 900",
+});
+
+const mono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-mono",
+  display: "swap",
+  adjustFontFallback: "Arial",
+  weight: "100 900",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#080b10",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,18 +60,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <head>
-        {/* Link to Google Fonts */}
-        <link
-          href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
-          rel='stylesheet'
-        />
-      </head>
-      <body className='antialiased' style={{ fontFamily: "'Inter', sans-serif" }}>
-        <TwinklingStars />
+    <html lang='en' className={`${sans.variable} ${mono.variable}`}>
+      <body className={`${sans.className} antialiased`}>
+        <LegacyChrome />
         {children}
-        <CursorTrail />
       </body>
     </html>
   );
